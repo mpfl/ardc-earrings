@@ -4,8 +4,8 @@ Style = "cutout"; // [ "cutout", "emboss"]
 // Overall length
 Length = 100;
 
-// Diameter of hole for mounting hardware
-Pinhole = 1; // [ 1:0.1:1.5 ]
+// Diameter of hole for mounting hardware - set to 0 if you want to manually drill it
+Pinhole = 1; // [ 0:0.1:1.5 ]
 
 Curve_quality = 60; // [ 60:360 ]
 
@@ -69,5 +69,5 @@ difference() {
         if ( Style == "cutout") cutout();
         else if ( Style == "emboss") emboss();
     }
-    translate([(Length)/-2+(Length/base_length*border_thickness/2),0,thickness/-2]) cylinder(d = Pinhole, h = thickness * 3);
+    if ( Pinhole > 0 ) translate([(Length)/-2+(Length/base_length*border_thickness/2),0,thickness/-2]) cylinder(d = Pinhole, h = thickness * 3);
 }
